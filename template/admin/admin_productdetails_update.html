@@ -1,0 +1,91 @@
+{% extends "admin/admin_headerfooter.html" %}
+{% block content %}
+
+<style>
+	.text_color
+	{color: green;}
+</style>
+		
+
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+		</div>
+		
+		<div class="row-one widgettable">
+			<div class="col-md-20 content-top-2 card">
+				<table>
+ 
+ <!-- product form -->
+{% for x in prd %}
+ <form action="/admin_productdetails_update/?pid={{x.id}}" method="POST" enctype="multipart/form-data">
+ 	 
+ 	 {% csrf_token %}
+  <label>Product Name:<br>
+  <input type="text" name="product_name" value="{{x.PRODUCT_NAME}}" class="text_color"><br><br>
+
+  <label>Product description:<br>
+  <textarea name="product_description" value="{{x.PRODUCT_DESCRIPTION}}" ></textarea><br><br>
+  
+  <label>Choose product category:</label>
+  	<select id="category" name="category" class="text_color">
+    	<option value="{{x.CATEGORY}}">{{x.CATEGORY}}</option>
+   	 	<option value="Fruits & Nuts">Fruits & Nuts</option>
+    	<option value="Fresh Meat">Fresh Meat</option>
+    	<option value="Fastfood">Fastfood</option>
+    	<option value="Oatmeal">Oatmeal</option>
+  	</select> <br><br>
+  <label> Product Image:</label>
+
+  	<img src="{{x.IMAGE.url}}" width=100px height=100px; style="object-fit: contain;"><br><br>
+  
+  <label> do you want update Image:</label>
+  <input type="radio" name="imgs"  id="chkYes" value="yes" class="text_color" onchange="hide();"> YES &nbsp;&nbsp;
+  <input type="radio" name="imgs" id="chkNo" value="no" class="text_color" onchange="hide();" checked> NO <br><br>
+
+  <div style="display: none;" id=imgfile>
+  <label>Upload Product Image:</label>
+  <input type="file" name="img" value="{{x.IMAGE.url}}" class="text_color">
+  </div>
+  
+  <label>Enter Product Price:</label><br>
+  <input type="number" name="price" placeholder="₹" value="{{x.PRICE}}" class="text_color"><br><br>
+
+  <label>Enter Product Quantity Per Kg:</label>
+  <input type="number" name="quantity" placeholder="Per Kg" value="{{x.QUANTITY}}" class="text_color"><br><br>
+	
+	<input type="submit" value="Submit">
+</form> 
+{% endfor %}
+  
+  
+</table>
+	<script type="text/javascript">
+		function hide(){
+			var chkYes = document.getElementById("chkYes");
+        var dvPassport = document.getElementById("imgfile");
+        dvPassport.style.display = chkYes.checked ? "block" : "none";
+    }
+	</script>
+	
+	<!-- for amcharts js -->
+			<script src="/static/js/amcharts.js"></script>
+			<script src="/static/js/serial.js"></script>
+			<script src="/static/js/export.min.js"></script>
+			<link rel="stylesheet" href="css/export.css" type="text/css" media="all" />
+			<script src="/static/js/light.js"></script>
+	<!-- for amcharts js -->
+
+    <script  src="/static/js/index1.js"></script>
+	
+		
+			</div>
+		</div>
+		
+		
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+			
+		
+{% endblock %}

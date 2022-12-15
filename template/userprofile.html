@@ -1,0 +1,171 @@
+{% extends "headerfooter.html" %}
+{% block content %}
+
+<style>
+  a:hover {
+  color: #7fad39;
+  }
+
+</style>
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="/static/img/breadcrumb3.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>User Profile</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Home</a>
+                            <span>Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- User profile form -->
+    <section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">User</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  {% for x in user %}
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img {% if x.IMAGE != '' %} src="{{x.IMAGE.url}}" {% else %} src='/static/user.png' {% endif %}
+              class="rounded-circle img-fluid" style="width: 150px;">
+              
+            
+            <h5 class="my-3">{{x.NAME}}</h5>
+            <p class="text-muted mb-1" style="color: gold;">Premium Member</p>
+            <p class="text-muted mb-4">{{x.EMAIL}}</p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" onclick="document.location='/editprofile/'" class="btn btn-primary">Edit profile</button>
+              <!-- <button type="button" class="btn btn-outline-primary ms-1">Message</button> -->
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <img src=/static/img/profile.png height="22px" width="22px"></i>
+                <a type=button href="/userprofile/" class="mb-0">Profile Information</a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <img src="/static/img/shopingcart.png" height="26px" width="26px"></i>
+                <a type=button href=/shopingcart/ class="mb-0">My Shoping cart</a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <img src=/static/img/myorders.png height="22px" width="22px"></i>
+                <a class="mb-0">My orders</a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <img src=/static/img/payment.png height="22px" width="22px"></i>
+                <a type=button href="/checkout/" class="mb-0">My Payment</a>
+              </li>
+              
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <svg width="24" height="24" class="" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#7fad39" stroke-width="0.3" stroke="#2874F0" d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"></path></svg>
+                <a href=/logout/ type=button class="mb-0">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{x.NAME}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{x.EMAIL}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{x.PHONE}}</p>
+              </div>
+            </div>
+            <hr>
+            <!-- <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">(098) 765-4321</p>
+              </div>
+            </div> -->
+            <!-- <hr> -->
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{x.ADDRESS}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+       
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <h4 style="color: rgb(111 111 111); font-family: sans-serif,cairo">FAQs</h4>
+                <p><b>What happens when I update my email address (or mobile number)?</b><br>
+Your login email id (or mobile number) changes, likewise. You'll receive all your account related communication on your updated email address (or mobile number).
+<br><br>
+<b>When will my Organi account be updated with the new email address (or mobile number)?</b><br>
+It happens as soon as you confirm the verification code sent to your email (or mobile) and save the changes.<br><br>
+
+<b>What happens to my existing Organi account when I update my email address (or mobile number)?</b><br>
+Updating your email address (or mobile number) doesn't invalidate your account. Your account remains fully functional. You'll continue seeing your Order history, saved information and personal details.<br><br>
+
+<b>Does my Seller account get affected when I update my email address?</b><br>
+Organi has a 'single sign-on' policy. Any changes will reflect in your Seller account also.<br></p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+   <!-- User profile form end  -->
+
+
+
+
+{% endblock %}

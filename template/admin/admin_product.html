@@ -1,0 +1,76 @@
+{% extends "admin/admin_headerfooter.html" %}
+{% block content %}
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+		</div>
+		
+		<div class="row-one widgettable">
+			<div class="col-md-20 content-top-2 card">
+				<table>
+ 
+ <!-- product form -->
+
+ <form action="/admin_product/" method="POST" enctype="multipart/form-data">
+ 	 {% csrf_token %}
+  <label>Product Name:<br>
+  <input type="text" name="product_name" ><br><br>
+  
+  <label>Choose product category:</label>
+  	<select id="category" name="category">
+    	<option value="Vegitables">Vegitables</option>
+   	 	<option value="Fruits & Nuts">Fruits & Nuts</option>
+    	<option value="Fresh Meat">Fresh Meat</option>
+    	<option value="Fastfood">Fastfood</option>
+    	<option value="Oatmeal">Oatmeal</option>
+  	</select> <br><br>
+
+<label>Product description:<br>
+  <textarea name="product_description" ></textarea><br><br>
+  
+  <label>Upload Product Image:</label>
+  <input type="file" name="img"><br>
+  
+  <label>eEnter Product Price:</label><br>
+  <input type="number" name="price" placeholder="&#x20b9;"><br><br>
+
+  <label>Enter Product Quantity Per Kg:</label>
+  <input type="number" name="quantity" placeholder="Per Kg" value="{{x.QUANTITY}}" class="text_color"><br><br>
+  
+	<input type="submit" value="Submit">
+
+</form> 
+ 
+  
+</table>
+				
+						<!-- </div> -->
+						
+				<!-- </div>
+			</div> -->
+			
+	
+	<!-- for amcharts js -->
+			<script src="/static/js/amcharts.js"></script>
+			<script src="/static/js/serial.js"></script>
+			<script src="/static/js/export.min.js"></script>
+			<link rel="stylesheet" href="css/export.css" type="text/css" media="all" />
+			<script src="/static/js/light.js"></script>
+	<!-- for amcharts js -->
+
+    <script  src="/static/js/index1.js"></script>
+	
+		
+			</div>
+		</div>
+		
+		
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+			
+		<!-- </div>
+				
+			</div>
+		</div> -->
+{% endblock %}
