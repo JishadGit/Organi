@@ -1,2 +1,2 @@
-# Organi
-demo
+# Organi Vegitable Store
+veggi Store project 
